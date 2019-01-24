@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
+                      xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
+                      name="wiremock-sample-archetype">
+    <fileSets>
+        <fileSet filtered="true" encoding="UTF-8">
+            <directory>config</directory>
+            <includes>
+                <include>**/*.properties</include>
+            </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+            <directory>config/mappings</directory>
+            <includes>
+                <include>**/*.json</include>
+            </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+            <directory>config/__files</directory>
+            <includes>
+                <include>**/*</include>
+            </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+            <directory></directory>
+            <includes>
+                <include>.gitignore</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+    <modules>
+        <module id="${rootArtifactId}-wiremock-stubs" dir="wiremock-stubs" name="${rootArtifactId}-wiremock-stubs"/>
+        <module id="${rootArtifactId}-standalone" dir="standalone" name="${rootArtifactId}-standalone">
+            <fileSets>
+                <fileSet filtered="true" packaged="true" encoding="UTF-8">
+                    <directory>src/main/java</directory>
+                    <includes>
+                        <include>**/*.java</include>
+                    </includes>
+                </fileSet>
+            </fileSets>
+        </module>
+        <module id="${rootArtifactId}-war" dir="war" name="${rootArtifactId}-war">
+            <fileSets>
+                <fileSet filtered="true" encoding="UTF-8">
+                    <directory>src/main/webapp</directory>
+                    <includes>
+                        <include>**/*.xml</include>
+                    </includes>
+                </fileSet>
+            </fileSets>
+        </module>
+        <module id="${rootArtifactId}-ear" dir="ear" name="${rootArtifactId}-ear"/>
+    </modules>
+</archetype-descriptor>
