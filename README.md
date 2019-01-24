@@ -4,7 +4,7 @@
 mvn archetype:generate \
     -DarchetypeGroupId=com.github.ehrlichandreas \
     -DarchetypeArtifactId=wiremock-sample-archetype \
-    -DarchetypeVersion=1.0.0 \
+    -DarchetypeVersion=1.0.1 \
     -DgroupId=newProjectId \
     -DartifactId=sample \
     -Dversion=1.0-SNAPSHOT \
