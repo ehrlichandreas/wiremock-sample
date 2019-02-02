@@ -1,10 +1,10 @@
 # wiremock-sample
 
 ```
-mvn archetype:generate \
+mvn archetype:generate -B \
     -DarchetypeGroupId=com.github.ehrlichandreas \
     -DarchetypeArtifactId=wiremock-sample-archetype \
-    -DarchetypeVersion=1.0.1 \
+    -DarchetypeVersion=1.0.2 \
     -DgroupId=newProjectId \
     -DartifactId=sample \
     -Dversion=1.0-SNAPSHOT \
@@ -35,11 +35,6 @@ or
 <wiremock.mappings.output.directory>wiremock2-stubs</wiremock.mappings.output.directory>
 <wiremock.standalone.properties.file>standalone2.properties</wiremock.standalone.properties.file>
 ```
-also update in **${groupId}.WireMockProperties.java** the value of
-```
-@PropertySource
-```
-to the value of your setting **${wiremock.standalone.properties.file}** in main **pom.xml**
 
 than
 

@@ -6,9 +6,6 @@ package ${package};
 import java.util.Map;
 import java.util.Objects;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.github.ehrlichandreas.wiremock.WireMockServer;
 import com.github.ehrlichandreas.wiremock.core.WireMockConfiguration;
 import com.github.ehrlichandreas.wiremock.extension.responsetemplating.helpers.MimeTypeToSubType;
@@ -17,7 +14,6 @@ import com.github.jknack.handlebars.Helper;
 import com.github.tomakehurst.wiremock.extension.responsetemplating.ResponseTemplateTransformer;
 import com.google.common.collect.ImmutableMap;
 
-@Component
 public class WireMockCreater {
 
     private final WireMockProperties wireMockProperties;
@@ -26,9 +22,12 @@ public class WireMockCreater {
         this(new WireMockProperties());
     }
 
-    @Autowired
     public WireMockCreater(WireMockProperties wireMockProperties) {
         this.wireMockProperties = wireMockProperties;
+    }
+
+    public static WireMockCreater wireMockCreater() {
+        return of();
     }
 
     public static WireMockCreater of() {

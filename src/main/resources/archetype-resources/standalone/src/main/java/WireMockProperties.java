@@ -4,25 +4,13 @@
 package ${package};
 
 import java.util.Objects;
-import javax.validation.constraints.Min;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 
 import com.github.ehrlichandreas.wiremock.core.Options;
 
-@Configuration
-@PropertySource(value = "${symbol_dollar}{standalone.properties-path:classpath:standalone.properties}", ignoreResourceNotFound = true)
 public class WireMockProperties {
-    @Min(0)
-    @Value("${symbol_dollar}{wiremock.server.port:8080}")
+
     private int serverPort;
-
-    @Value("${symbol_dollar}{wiremock.stubs.directory:wiremock-stubs}")
     private String stubsDirectory;
-
-    @Value("${symbol_dollar}{wiremock.stubs.root-context:}")
     private String stubsRootContext;
 
     public WireMockProperties() {
@@ -35,23 +23,31 @@ public class WireMockProperties {
         this.stubsRootContext = stubsRootContext;
     }
 
+    public static WireMockProperties wireMockProperties() {
+        return of();
+    }
+
     public static WireMockProperties of() {
         return new WireMockProperties();
     }
 
-    public static WireMockProperties of(int serverPort, String stubsDirectory, String stubsRootContext) {
+    public static WireMockProperties of(final int serverPort, final String stubsDirectory, final String stubsRootContext) {
         return new WireMockProperties(serverPort, stubsDirectory, stubsRootContext);
     }
 
-    public WireMockProperties withServerPort(int serverPort) {
+    public WireMockProperties withDynamicServerPort() {
+        return this.withServerPort(0);
+    }
+
+    public WireMockProperties withServerPort(final int serverPort) {
         return of(serverPort, getStubsDirectory(), getStubsRootContext());
     }
 
-    public WireMockProperties withStubsDirectory(String stubsDirectory) {
+    public WireMockProperties withStubsDirectory(final String stubsDirectory) {
         return of(getServerPort(), stubsDirectory, getStubsRootContext());
     }
 
-    public WireMockProperties withStubsRootContext(String stubsRootContext) {
+    public WireMockProperties withStubsRootContext(final String stubsRootContext) {
         return of(getServerPort(), getStubsDirectory(), stubsRootContext);
     }
 
@@ -68,7 +64,7 @@ public class WireMockProperties {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (!(o instanceof WireMockProperties)) return false;
         WireMockProperties that = (WireMockProperties) o;
