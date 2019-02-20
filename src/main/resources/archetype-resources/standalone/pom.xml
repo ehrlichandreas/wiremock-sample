@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>${rootArtifactId}</artifactId>
-        <groupId>${groupId}</groupId>
-        <version>${version}</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>${groupId}</groupId>
+        <artifactId>${rootArtifactId}</artifactId>
+        <version>${version}</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
 
     <artifactId>${artifactId}</artifactId>
     <packaging>jar</packaging>
+    <name>${artifactId}</name>
 
     <dependencies>
         <dependency>
@@ -33,10 +35,16 @@
             <artifactId>slf4j-jdk14</artifactId>
             <version>1.7.25</version>
         </dependency>
+        <dependency>
+            <groupId>org.antlr</groupId>
+            <artifactId>antlr4-runtime</artifactId>
+            <version>4.7.2</version>
+        </dependency>
     </dependencies>
 
     <build>
         <finalName>${project.artifactId}</finalName>
+        <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
         <resources>
             <resource>
                 <directory>${project.build.sourceDirectory}/../resources</directory>
@@ -52,10 +60,10 @@
                 <executions>
                     <execution>
                         <id>copy-wiremock-properties</id>
-                        <phase>validate</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
+                        <phase>validate</phase>
                         <configuration>
                             <outputDirectory>${project.build.directory}/classes</outputDirectory>
                             <resources>
@@ -75,13 +83,14 @@
             <plugin>
                 <groupId>com.google.code.maven-replacer-plugin</groupId>
                 <artifactId>maven-replacer-plugin</artifactId>
+                <version>1.4.1</version>
                 <executions>
                     <execution>
                         <id>executable</id>
-                        <phase>validate</phase>
                         <goals>
                             <goal>replace</goal>
                         </goals>
+                        <phase>validate</phase>
                         <configuration>
                             <includes>
                                 <include>src/main/java/**</include>
@@ -96,10 +105,10 @@
                     </execution>
                     <execution>
                         <id>update-web.xml</id>
-                        <phase>validate</phase>
                         <goals>
                             <goal>replace</goal>
                         </goals>
+                        <phase>validate</phase>
                         <configuration>
                             <includes>
                                 <include>target/classes/**</include>
@@ -130,10 +139,10 @@
                 <executions>
                     <execution>
                         <id>copy-and-rename-file</id>
-                        <phase>validate</phase>
                         <goals>
                             <goal>rename</goal>
                         </goals>
+                        <phase>validate</phase>
                         <configuration>
                             <sourceFile>${project.build.directory}/classes/standalone.properties</sourceFile>
                             <destinationFile>${project.build.directory}/classes/${wiremock.standalone.properties.file}</destinationFile>
@@ -149,16 +158,16 @@
                 <executions>
                     <execution>
                         <id>copy-resources</id>
-                        <phase>compile</phase>
                         <goals>
                             <goal>unpack</goal>
                         </goals>
+                        <phase>compile</phase>
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>${parent.groupId}</groupId>
-                                    <artifactId>${parent.artifactId}-wiremock-stubs</artifactId>
-                                    <version>${parent.version}</version>
+                                    <groupId>${project.parent.groupId}</groupId>
+                                    <artifactId>${project.parent.artifactId}-wiremock-stubs</artifactId>
+                                    <version>${project.parent.version}</version>
                                     <type>jar</type>
                                     <overWrite>true</overWrite>
                                     <includes>${wiremock.mappings.output.directory}/**</includes>
@@ -176,6 +185,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.1.2.RELEASE</version>
                 <configuration>
                     <addResources>true</addResources>
                 </configuration>
@@ -203,10 +213,10 @@
                         <artifactId>jib-maven-plugin</artifactId>
                         <configuration>
                             <to>
-                                <image>${parent.groupId}/${parent.artifactId}</image>
+                                <image>${project.parent.groupId}/${project.parent.artifactId}</image>
                                 <tags>
-                                    <tag>${parent.version}</tag>
-                                    <tag>${parent.version}-8-jre-alpine</tag>
+                                    <tag>${project.parent.version}</tag>
+                                    <tag>${project.parent.version}-8-jre-alpine</tag>
                                     <tag>latest</tag>
                                 </tags>
                                 <auth>
@@ -241,10 +251,10 @@
                         </configuration>
                         <executions>
                             <execution>
-                                <phase>package</phase>
                                 <goals>
                                     <goal>build</goal>
                                 </goals>
+                                <phase>package</phase>
                             </execution>
                         </executions>
                     </plugin>

@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>${rootArtifactId}</artifactId>
-        <groupId>${groupId}</groupId>
-        <version>${version}</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>${groupId}</groupId>
+        <artifactId>${rootArtifactId}</artifactId>
+        <version>${version}</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
 
     <artifactId>${artifactId}</artifactId>
     <packaging>jar</packaging>
+    <name>${artifactId}</name>
 
     <build>
-        <finalName>${project.artifactId}</finalName>
         <plugins>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -22,10 +24,10 @@
                 <executions>
                     <execution>
                         <id>copy-resources-files</id>
-                        <phase>validate</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
+                        <phase>validate</phase>
                         <configuration>
                             <outputDirectory>${project.build.directory}/classes/${wiremock.mappings.output.directory}/__files</outputDirectory>
                             <resources>
@@ -38,10 +40,10 @@
                     </execution>
                     <execution>
                         <id>copy-resources-mappings</id>
-                        <phase>validate</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
+                        <phase>validate</phase>
                         <configuration>
                             <outputDirectory>${project.build.directory}/classes/${wiremock.mappings.output.directory}/mappings</outputDirectory>
                             <resources>
@@ -56,4 +58,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
