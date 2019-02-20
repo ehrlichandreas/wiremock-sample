@@ -4,7 +4,7 @@
 
   <groupId>com.github.ehrlichandreas</groupId>
   <artifactId>wiremock-sample-archetype</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
   <packaging>maven-archetype</packaging>
 
   <name>wiremock-sample-archetype</name>
