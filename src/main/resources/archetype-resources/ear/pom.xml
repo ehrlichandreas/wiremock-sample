@@ -10,15 +10,15 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>${artifactId}</artifactId>
+    <artifactId>${project.parent.artifactId}-ear</artifactId>
     <packaging>ear</packaging>
-    <name>${artifactId}</name>
+    <name>${project.parent.artifactId}-ear</name>
 
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>${rootArtifactId}-war</artifactId>
-            <version>${version}</version>
+            <artifactId>${project.parent.artifactId}-war</artifactId>
+            <version>${project.parent.version}</version>
             <type>war</type>
         </dependency>
     </dependencies>
@@ -41,8 +41,8 @@
                     </artifactTypeMappings>
                     <modules>
                         <webModule>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>${rootArtifactId}-war</artifactId>
+                            <groupId>${project.parent.groupId}</groupId>
+                            <artifactId>${project.parent.artifactId}-war</artifactId>
                             <contextRoot>${wiremock.stubs.root-context}</contextRoot>
                         </webModule>
                     </modules>

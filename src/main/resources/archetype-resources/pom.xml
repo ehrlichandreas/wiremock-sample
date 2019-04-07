@@ -18,14 +18,8 @@
     </modules>
 
     <properties>
-        <wiremock.server.port>__wiremock.server.port__</wiremock.server.port>
-        <web.app.display.name>__web.app.display.name__</web.app.display.name>
-        <wiremock.stubs.root-context>__wiremock.stubs.root-context__</wiremock.stubs.root-context>
-        <wiremock.mappings.output.directory>__wiremock-stubs__</wiremock.mappings.output.directory>
-        <wiremock.standalone.properties.file>__standalone.properties__</wiremock.standalone.properties.file>
-        <wiremock.mappings.source.directory>config</wiremock.mappings.source.directory>
-        <dockerhub.auth.username></dockerhub.auth.username>
-        <dockerhub.auth.password></dockerhub.auth.password>
+        <dockerhub.auth.password>__dockerhub.auth.password__</dockerhub.auth.password>
+        <dockerhub.auth.username>__dockerhub.auth.password__</dockerhub.auth.username>
         <java.version>1.8</java.version>
         <javac.source.currentVersion>1.8</javac.source.currentVersion>
         <javac.target.currentVersion>1.8</javac.target.currentVersion>
@@ -33,6 +27,13 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <web.app.display.name>__web.app.display.name__</web.app.display.name>
+        <wiremock.mappings.output.directory>__wiremock-stubs__</wiremock.mappings.output.directory>
+        <wiremock.mappings.source.directory>config</wiremock.mappings.source.directory>
+        <wiremock.server.port>__wiremock.server.port__</wiremock.server.port>
+        <wiremock.standalone.executable.package>${package}</wiremock.standalone.executable.package>
+        <wiremock.standalone.properties.file>__standalone.properties__</wiremock.standalone.properties.file>
+        <wiremock.stubs.root-context>__wiremock.stubs.root-context__</wiremock.stubs.root-context>
     </properties>
 
     <repositories>

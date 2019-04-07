@@ -10,9 +10,9 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>${artifactId}</artifactId>
+    <artifactId>${project.parent.artifactId}-wiremock-stubs</artifactId>
     <packaging>jar</packaging>
-    <name>${artifactId}</name>
+    <name>${project.parent.artifactId}-wiremock-stubs</name>
 
     <build>
         <plugins>

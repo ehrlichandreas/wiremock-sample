@@ -10,9 +10,9 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>${artifactId}</artifactId>
+    <artifactId>${project.parent.artifactId}-war</artifactId>
     <packaging>war</packaging>
-    <name>${artifactId}</name>
+    <name>${project.parent.artifactId}-war</name>
 
     <dependencies>
         <dependency>
@@ -41,7 +41,7 @@
         <dependency>
             <groupId>com.github.ehrlichandreas</groupId>
             <artifactId>wiremock</artifactId>
-            <version>2.20.0</version>
+            <version>2.20.0.1</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.github.tomakehurst</groupId>
