@@ -205,10 +205,7 @@
                         </goals>
                         <configuration>
                             <classifier>spring-boot</classifier>
-                            <mainClass>${wiremock.standalone.executable.package}.Executable</mainClass>
-                            <!--
-                            <mainClass>${wiremock.standalone.executable.package}.ExecutableProxy</mainClass>
-                            -->
+                            <mainClass>${wiremock.standalone.executable.mainClass}</mainClass>
                         </configuration>
                     </execution>
                 </executions>
@@ -246,10 +243,7 @@
                                     <!--<jvmFlag>-Xdebug</jvmFlag>-->
                                     <!--<jvmFlag>-Xmy:flag=jib-rules</jvmFlag>-->
                                 </jvmFlags>
-                                <mainClass>${wiremock.standalone.executable.package}.Executable</mainClass>
-                                <!--
-                                <mainClass>${wiremock.standalone.executable.package}.ExecutableProxy</mainClass>
-                                -->
+                                <mainClass>${wiremock.standalone.executable.mainClass}</mainClass>
                                 <!--<args>
                                     <arg>some</arg>
                                     <arg>args</arg>

@@ -32,6 +32,10 @@
         <wiremock.mappings.source.directory>config</wiremock.mappings.source.directory>
         <wiremock.server.port>__wiremock.server.port__</wiremock.server.port>
         <wiremock.standalone.executable.package>${package}</wiremock.standalone.executable.package>
+        <wiremock.standalone.executable.mainClass>${wiremock.standalone.executable.package}.Executable</wiremock.standalone.executable.mainClass>
+        <!--
+        <wiremock.standalone.executable.mainClass>${wiremock.standalone.executable.package}.ExecutableProxy</wiremock.standalone.executable.mainClass>
+        -->
         <wiremock.standalone.properties.file>__standalone.properties__</wiremock.standalone.properties.file>
         <wiremock.stubs.root-context>__wiremock.stubs.root-context__</wiremock.stubs.root-context>
     </properties>
