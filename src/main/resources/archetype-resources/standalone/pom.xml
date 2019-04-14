@@ -23,7 +23,7 @@
         <dependency>
             <groupId>com.github.ehrlichandreas</groupId>
             <artifactId>wiremock</artifactId>
-            <version>2.20.0.1</version>
+            <version>2.20.0.2</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -125,6 +125,10 @@
                                 <replacement>
                                     <token>@@wiremock.stubs.directory@@</token>
                                     <value>${wiremock.mappings.output.directory}</value>
+                                </replacement>
+                                <replacement>
+                                    <token>@@wiremock.init.proxied-servers@@</token>
+                                    <value>${wiremock.init.proxied-servers}</value>
                                 </replacement>
                             </replacements>
                         </configuration>
